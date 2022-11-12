@@ -5,6 +5,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.WindowManager
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.tinyappco.shoplist.databinding.ActivityAddItemBinding
@@ -28,6 +29,11 @@ class AddItemActivity : AppCompatActivity() {
         val enterHandler = EnterHandler()
         binding.etItem.setOnEditorActionListener(enterHandler)
         binding.etCount.setOnEditorActionListener(enterHandler)
+
+        binding.etItem.requestFocus()
+        //display keyboard
+        window.setSoftInputMode(
+            WindowManager.LayoutParams.SOFT_INPUT_STATE_VISIBLE)
     }
 
     private fun validProductName() : Boolean {

@@ -11,10 +11,10 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
     var list = mutableListOf<ShoppingListItem>()
 
     init{
-        list.add(ShoppingListItem("bread",2))
-        val cheese = ShoppingListItem("cheese",1)
-        cheese.purchased = true
-        list.add(cheese)
+//        list.add(ShoppingListItem("bread",2))
+//        val cheese = ShoppingListItem("cheese",1)
+//        cheese.purchased = true
+//        list.add(cheese)
     }
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
@@ -48,6 +48,12 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
             cardView.tvCount.toggleStrikeThrough(true)
         }
 
+    }
+
+    override fun onViewRecycled(holder: ViewHolder) {
+        super.onViewRecycled(holder)
+        holder.binding.tvProduct.toggleStrikeThrough(false)
+        holder.binding.tvCount.toggleStrikeThrough(false)
     }
 
     override fun getItemCount(): Int {
