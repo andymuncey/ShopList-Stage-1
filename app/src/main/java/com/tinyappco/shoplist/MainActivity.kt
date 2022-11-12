@@ -3,6 +3,8 @@ package com.tinyappco.shoplist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.tinyappco.shoplist.databinding.ActivityMainBinding
 import java.io.Serializable
 
@@ -13,6 +15,10 @@ class ShoppingListItem(val name: String, var count: Int) : Serializable {
 
 lateinit var binding: ActivityMainBinding
 
+private lateinit var layoutManager: RecyclerView.LayoutManager
+
+private lateinit var adapter: RecyclerAdapter
+
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,6 +28,12 @@ class MainActivity : AppCompatActivity() {
         setContentView(view)
 
         setSupportActionBar(binding.toolbar)
+
+        layoutManager = LinearLayoutManager(this)
+
+        binding.rvShoppingList.layoutManager = layoutManager
+        adapter = RecyclerAdapter()
+        binding.rvShoppingList.adapter = adapter
     }
 
 
