@@ -64,4 +64,8 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
         }
         notifyDataSetChanged()
     }
+
+    fun addItem(item: ShoppingListItem){ list.add(item)
+        notifyItemInserted(list.lastIndex)
+    }
 }
