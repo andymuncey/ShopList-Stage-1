@@ -3,6 +3,7 @@ package com.tinyappco.shoplist
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
+import android.view.MenuItem
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.tinyappco.shoplist.databinding.ActivityMainBinding
@@ -36,6 +37,15 @@ class MainActivity : AppCompatActivity() {
         binding.rvShoppingList.adapter = adapter
     }
 
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.clear_complete){
+            adapter.removeFoundItems()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+    }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.menu_main, menu)

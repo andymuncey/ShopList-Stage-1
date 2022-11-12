@@ -26,7 +26,7 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
                 binding.tvProduct.toggleStrikeThrough(list[bindingAdapterPosition].purchased )
                 binding.tvCount.toggleStrikeThrough(list[bindingAdapterPosition].purchased)
 
-        }
+            }
         }
 
 
@@ -52,5 +52,16 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     override fun getItemCount(): Int {
         return list.size
+    }
+
+    fun removeFoundItems(){
+        val iterator = list.iterator()
+        while (iterator.hasNext()){
+            val item = iterator.next()
+            if (item.purchased){
+                iterator.remove()
+            }
+        }
+        notifyDataSetChanged()
     }
 }
