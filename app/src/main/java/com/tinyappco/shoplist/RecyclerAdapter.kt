@@ -19,6 +19,17 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val binding = CardLayoutBinding.bind(itemView)
+
+        init{
+            itemView.setOnClickListener {
+                list[bindingAdapterPosition].purchased = !list[bindingAdapterPosition].purchased
+                binding.tvProduct.toggleStrikeThrough(list[bindingAdapterPosition].purchased )
+                binding.tvCount.toggleStrikeThrough(list[bindingAdapterPosition].purchased)
+
+        }
+        }
+
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
