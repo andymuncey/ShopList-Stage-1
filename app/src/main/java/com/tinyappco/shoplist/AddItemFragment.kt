@@ -1,6 +1,7 @@
 package com.tinyappco.shoplist
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.*
@@ -24,8 +25,23 @@ class AddItemFragment : Fragment() {
 //    private var param1: String? = null
 //    private var param2: String? = null
 
+
+    interface AddItemFragmentListener {
+        fun onItemAdded(item: ShoppingListItem)
+    }
+
+    private var addItemListener : AddItemFragmentListener? = null
+
     private lateinit var binding : FragmentAddItemBinding
 
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+
+        if (context is AddItemFragmentListener) {
+            addItemListener = context as AddItemFragmentListener
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -108,12 +124,13 @@ class AddItemFragment : Fragment() {
             //user has pressed tick button on soft keyboard, or pressed enter key
             if (actionId == EditorInfo.IME_ACTION_DONE || KeyEvent.KEYCODE_ENTER.equals (event?.keyCode)) {
                 if (validProductName()) {
-                    val product = ShoppingListItem(binding.etItem.text.toString(),productCount
-                        ())
-                    val intent = Intent()
-                    intent.putExtra("item", product)
-                    activity?.setResult(Activity.RESULT_OK, intent)
-                    activity?.finish()
+                    val product = ShoppingListItem(binding.etItem.text.toString(),productCount())
+                    addItemListener?.onItemAdded(product)
+
+//                    val intent = Intent()
+//                    intent.putExtra("item", product)
+//                    activity?.setResult(Activity.RESULT_OK, intent)
+//                    activity?.finish()
 //we have consumed (handled) this event (key press) return true
                 }
             }

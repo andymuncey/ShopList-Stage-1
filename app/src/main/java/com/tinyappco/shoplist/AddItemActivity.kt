@@ -12,7 +12,7 @@ import com.tinyappco.shoplist.databinding.ActivityAddItemBinding
 
 
 
-class AddItemActivity : AppCompatActivity() {
+class AddItemActivity : AppCompatActivity() , AddItemFragment.AddItemFragmentListener{
 
     private lateinit var binding: ActivityAddItemBinding
 
@@ -23,5 +23,12 @@ class AddItemActivity : AppCompatActivity() {
         setContentView(view)
 
 
+    }
+
+    override fun onItemAdded(item: ShoppingListItem) {
+        val intent = Intent()
+        intent.putExtra("item", item)
+        setResult(Activity.RESULT_OK, intent)
+        finish()
     }
 }

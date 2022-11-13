@@ -138,4 +138,6 @@ class MainActivity : AppCompatActivity() {
         override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                  } }
 
+
+
 }
