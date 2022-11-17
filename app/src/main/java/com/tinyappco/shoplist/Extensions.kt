@@ -1,5 +1,7 @@
 package com.tinyappco.shoplist
 
+import android.app.Activity
+import android.content.res.Configuration
 import android.graphics.Paint
 import android.widget.TextView
 
@@ -13,3 +15,8 @@ import android.widget.TextView
 
         }
     }
+
+
+fun Activity.isLandscape() : Boolean {
+    return this.resources.configuration.orientation == Configuration.ORIENTATION_LANDSCAPE
+}

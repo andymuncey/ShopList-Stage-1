@@ -10,30 +10,17 @@ import android.widget.Toast
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.tinyappco.shoplist.databinding.FragmentAddItemBinding
 import com.tinyappco.shoplist.databinding.FragmentShopListBinding
 import java.io.ObjectInputStream
 import java.io.ObjectOutputStream
 
-
-/**
- * A simple [Fragment] subclass.
- * Use the [ShopListFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
 class ShopListFragment : Fragment() {
-
 
     private lateinit var layoutManager: RecyclerView.LayoutManager
 
     lateinit var adapter: RecyclerAdapter
 
     private lateinit var binding: FragmentShopListBinding
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     private fun loadList() {
         try {
@@ -54,20 +41,10 @@ class ShopListFragment : Fragment() {
     }
 
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         binding = FragmentShopListBinding.inflate(inflater)
-
-
-
-
         return binding.root
     }
-
-
 
     private fun saveList(){
         val fileOutputStream = activity?.openFileOutput("list.dat", Context.MODE_PRIVATE)
@@ -97,7 +74,6 @@ class ShopListFragment : Fragment() {
         binding.rvShoppingList.adapter = adapter
 
         handleDragging()
-
         loadList()
     }
 
@@ -111,10 +87,8 @@ class ShopListFragment : Fragment() {
         override fun getMovementFlags(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder): Int {
             val dragFlags = ItemTouchHelper.UP or ItemTouchHelper.DOWN
             return makeMovementFlags(dragFlags, 0)
-
         }
         override fun onMove(recyclerView: RecyclerView, viewHolder: RecyclerView.ViewHolder, target: RecyclerView.ViewHolder): Boolean {
-
             adapter.notifyItemMoved(viewHolder.bindingAdapterPosition,target.bindingAdapterPosition)
             return true
         }

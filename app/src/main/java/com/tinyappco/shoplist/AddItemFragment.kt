@@ -22,7 +22,7 @@ class AddItemFragment : Fragment() {
         super.onAttach(context)
 
         if (context is AddItemFragmentListener) {
-            addItemListener = context as AddItemFragmentListener
+            addItemListener = context
         }
     }
 
@@ -79,6 +79,8 @@ class AddItemFragment : Fragment() {
                 if (validProductName()) {
                     val product = ShoppingListItem(binding.etItem.text.toString(),productCount())
                     addItemListener?.onItemAdded(product)
+                    binding.etItem.text.clear()
+                    binding.etCount.setText("1")
             //we have consumed (handled) this event (key press) return true
                 }
             }
