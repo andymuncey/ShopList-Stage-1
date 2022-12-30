@@ -11,4 +11,9 @@
         android:icon="@android:drawable/ic_menu_close_clear_cancel"
         android:title="Clear found items"
         app:showAsAction="ifRoom|withText" />
+
+    <item android:id="@+id/action_settings"
+        android:orderInCategory="100"
+        android:title="@string/settings"
+        app:showAsAction="never" />
 </menu>

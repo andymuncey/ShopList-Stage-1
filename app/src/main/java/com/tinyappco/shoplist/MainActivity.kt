@@ -54,6 +54,11 @@ class MainActivity : AppCompatActivity(), AddItemFragment.AddItemFragmentListene
             return true
         }
 
+        if  (item.itemId == R.id.action_settings){
+            val intent = Intent(this,SettingsActivity::class.java)
+            startActivity(intent)
+        }
+
         return super.onOptionsItemSelected(item)
     }
 
