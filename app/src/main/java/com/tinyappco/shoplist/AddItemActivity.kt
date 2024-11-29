@@ -37,27 +37,24 @@ class AddItemActivity : AppCompatActivity() {
     }
 
     private fun validProductName() : Boolean {
-        return binding.etItem.text.length > 0
+        return binding.etItem.text.isNotEmpty()
     }
     private fun productCount() : Int {
-        val userCount = binding.etCount.text.toString().toIntOrNull()
-        return if (userCount == null) 1 else userCount
+        return binding.etCount.text.toString().toIntOrNull() ?: 1
     }
 
 
     private fun incrementCount() {
-        var userCount = binding.etCount.text.toString().toIntOrNull()
-        if (userCount == null) {
-            userCount = 1
-        }
-        binding.etCount.setText((userCount + 1).toString())
+        var userCount = binding.etCount.text.toString().toIntOrNull() ?:1
+        userCount += 1
+        binding.etCount.setText("$userCount")
     }
 
     inner class EnterHandler : TextView.OnEditorActionListener{
         override fun onEditorAction(v: TextView?, actionId: Int, event: KeyEvent?): Boolean {
 
             //user has pressed tick button on soft keyboard, or pressed enter key
-            if (actionId == EditorInfo.IME_ACTION_DONE || KeyEvent.KEYCODE_ENTER.equals (event?.keyCode)) {
+            if (actionId == EditorInfo.IME_ACTION_DONE || KeyEvent.KEYCODE_ENTER == event?.keyCode) {
                 if (validProductName()) {
                     val product = ShoppingListItem(binding.etItem.text.toString(),productCount
                         ())
@@ -68,7 +65,7 @@ class AddItemActivity : AppCompatActivity() {
 //we have consumed (handled) this event (key press) return true
                 }
             }
-//we have not consumed this event (i.e. different key pressed or no valid pr oduct entered yet
+//we have not consumed this event (i.e. different key pressed or no valid product entered yet
             return false
 
 
