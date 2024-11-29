@@ -10,12 +10,12 @@ class RecyclerAdapter : RecyclerView.Adapter<RecyclerAdapter.ViewHolder>() {
 
     var list = mutableListOf<ShoppingListItem>()
 
-    init{
+//    init{
 //        list.add(ShoppingListItem("bread",2))
 //        val cheese = ShoppingListItem("cheese",1)
 //        cheese.purchased = true
 //        list.add(cheese)
-    }
+//    }
 
     inner class ViewHolder(itemView : View) : RecyclerView.ViewHolder(itemView) {
         val binding = CardLayoutBinding.bind(itemView)
